@@ -13,7 +13,7 @@ const (
 	// NginxPiped : '$remote_addr|$host|[$time_local]|$request_time|$upstream_response_time|"$request"|$status'|$body_bytes_sent|"$http_referer"|$upstream_addr'
 	NginxPiped   = "%s|%s|[%s]|%f|%f|\"%s %s HTTP/1.1\"|%d|%d|\"%s\"|-\n"
 	NginxTime    = "02/Jan/2006:15:04:05 +0000"
-	NginxErrTime = "02/Jan/2006 15:04:05"
+	NginxErrTime = "2006/01/02 15:04:05"
 	NginxError   = "%s [%s] 1001#1001: *2222 %s, client: %s, server %s, request: \"%s %s HTTP/1.1\", upstream: \"uwsgi://127.0.0.1:8080\", host: \"%s\"\n"
 )
 
