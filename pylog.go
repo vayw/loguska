@@ -51,7 +51,7 @@ func pyLog(w *bufio.Writer, l int) string {
 			res[key] += 1
 		} else {
 			line = makeTraceback()
-			res["traceback"] += 1
+			res["Traceback:count"] += 1
 		}
 		_, err := w.WriteString(line)
 		if err != nil {
