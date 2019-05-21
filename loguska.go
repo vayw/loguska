@@ -9,7 +9,7 @@ import (
 
 func main() {
 	var (
-		logf     = flag.String("log", "piped", "log format; piped, err")
+		logf     = flag.String("log", "piped", "log format; piped, err, py")
 		logname  = flag.String("output", "log.log", "output file")
 		loglines = flag.Int("lines", 100, "number of lines to generate")
 	)
@@ -30,6 +30,8 @@ func main() {
 		res = nginxPiped(w, *loglines)
 	case "err":
 		res = nginxError(w, *loglines)
+	case "py":
+		res = pyLog(w, *loglines)
 	}
 
 	w.Flush()

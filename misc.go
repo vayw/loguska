@@ -14,6 +14,7 @@ const (
 	NginxPiped   = "%s|%s|[%s]|%f|%f|\"%s %s HTTP/1.1\"|%d|%d|\"%s\"|-\n"
 	NginxTime    = "02/Jan/2006:15:04:05 +0000"
 	NginxErrTime = "2006/01/02 15:04:05"
+	PyLogTime    = "2006-01-02 15:04:05,000000+0000"
 	NginxError   = "%s [%s] 1001#1001: *2222 %s, client: %s, server %s, request: \"%s %s HTTP/1.1\", upstream: \"uwsgi://127.0.0.1:8080\", host: \"%s\"\n"
 )
 
@@ -74,6 +75,8 @@ func GetTime(format string) string {
 		line = fmt.Sprintf(t.Format(NginxTime))
 	case "NginxErrTime":
 		line = fmt.Sprintf(t.Format(NginxErrTime))
+	case "PyLogTime":
+		line = fmt.Sprintf(t.Format(PyLogTime))
 	default:
 		panic("PANIC! unknown time pattern: " + format)
 	}
