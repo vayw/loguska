@@ -19,13 +19,23 @@ var PyLogger = []string{"app.system.worker",
 	"app.logic.incapsulator", "app.logic.duplicator"}
 
 func makeTraceback() string {
-	head := "Traceback (most recent call last)"
-	src := fmt.Sprintf("\tFile \"%s.py\", line %d, in _execute_context",
-		URI(),
+	var tb string
+	t := rand.Float32()
+	switch {
+	case t > 0.6:
+		tb = "    "
+	case 0.6 >= t && t > 0.3:
+		tb = "\t"
+	default:
+		tb = ""
+	}
+	head := fmt.Sprintf("%sTraceback (most recent call last)", tb)
+	src := fmt.Sprintf("%s\tFile \"%s.py\", line %d, in _execute_context",
+		tb, URI(),
 		gofakeit.Number(0, 1000),
 	)
-	bla := fmt.Sprintf("\t\t%s", gofakeit.HackerPhrase())
-	tail := "python.some.exception: m out of mind"
+	bla := fmt.Sprintf("%s\t\t%s", tb, gofakeit.HackerPhrase())
+	tail := fmt.Sprintf("%spython.some.exception: m out of mind", tb)
 
 	result := fmt.Sprintf("%s\n%s\n%s\n%s\n", head, src, bla, tail)
 	return result
@@ -51,7 +61,7 @@ func pyLog(w *bufio.Writer, l int) string {
 			res[key] += 1
 		} else {
 			line = makeTraceback()
-			res["Traceback:count"] += 1
+			res["Traceback:Traceback"] += 1
 		}
 		_, err := w.WriteString(line)
 		if err != nil {
