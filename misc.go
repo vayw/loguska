@@ -18,7 +18,7 @@ const (
 	NginxError   = "%s [%s] 1001#1001: *2222 %s, client: %s, server %s, request: \"%s %s HTTP/1.1\", upstream: \"uwsgi://127.0.0.1:8080\", host: \"%s\"\n"
 )
 
-var StatusCodes = []int{200, 301, 403, 400, 500, 503, 504}
+var StatusCodes = []int{200, 301, 403, 400, 500, 502, 504}
 var ErrorLevels = []string{"warn", "error", "crit", "alert", "emerg"}
 
 func GetRespCode() int {
